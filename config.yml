@@ -1,0 +1,23 @@
+copies:
+  - source_host: localhost
+    source_port: 5433
+    source_user: linkyness
+    source_pass_var: SOURCE_DB_PASSWORD
+    dest_host: localhost
+    dest_port: 5434
+    dest_user: linkyness
+    dest_pass_var: DEST_DB_PASSWORD
+
+    tables:
+      - source_schema: "source"
+        source_table: "dimension"
+        dest_schema: "dest"
+        dest_table: "dimension"
+        copy_type: "full"
+        
+      - source_schema: "source"
+        source_table: "events"
+        dest_schema: "dest"
+        dest_table: "events"
+        copy_type: "incremental"
+        incremental_column: "updated_at"
